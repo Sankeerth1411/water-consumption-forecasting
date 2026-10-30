@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import joblib
 import os
+from pathlib import Path
 import matplotlib.pyplot as plt
 
 st.set_page_config(
@@ -11,10 +12,12 @@ st.set_page_config(
     layout="wide"
 )
 
-# Sidebar
-st.sidebar.title("Academic Details")
-st.sidebar.markdown("**Student Name:** R. Sankeerth")
-st.sidebar.markdown("**USN:** 1NT24AD047")
+# Project root directory
+ROOT_DIR = Path(__file__).parent
+
+# Sidebar (Public view without USN)
+st.sidebar.title("Project Details")
+st.sidebar.markdown("**Project:** Water Consumption Forecasting")
 st.sidebar.markdown("**Course:** Data Mining")
 st.sidebar.markdown("**Assigned Algorithm:** Decision Tree Regressor")
 st.sidebar.markdown("---")
@@ -22,14 +25,14 @@ app_mode = st.sidebar.selectbox("Navigation", ["Overview & Metrics", "Interactiv
 
 @st.cache_resource
 def load_model_and_data():
-    model_path = 'models/decision_tree_model.joblib'
-    if os.path.exists(model_path):
+    model_path = ROOT_DIR / 'models' / 'decision_tree_model.joblib'
+    if model_path.exists():
         artifact = joblib.load(model_path)
     else:
         artifact = None
 
-    eval_path = 'reports/evaluation_results.csv'
-    if os.path.exists(eval_path):
+    eval_path = ROOT_DIR / 'reports' / 'evaluation_results.csv'
+    if eval_path.exists():
         eval_df = pd.read_csv(eval_path)
     else:
         eval_df = None
@@ -42,7 +45,7 @@ if app_mode == "Overview & Metrics":
     st.title("💧 Household Water Consumption Forecasting")
     st.markdown("### Decision Tree Regression Case Study")
     st.markdown("""
-    This application estimates future household water consumption using historical water usage and temporal patterns, built as part of the Data Mining university case study.
+    This application estimates future household water consumption using historical water usage and temporal patterns, built as part of the Data Mining case study.
     """)
 
     col1, col2, col3 = st.columns(3)
@@ -130,20 +133,23 @@ elif app_mode == "Visualisations & Insights":
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Actual vs Predicted")
-        if os.path.exists('reports/actual_vs_predicted.png'):
-            st.image('reports/actual_vs_predicted.png', use_container_width=True)
+        img_path1 = ROOT_DIR / 'reports' / 'actual_vs_predicted.png'
+        if img_path1.exists():
+            st.image(str(img_path1), use_container_width=True)
         else:
-            st.warning("Chart not found. Run `src/evaluate_model.py`.")
+            st.warning("Chart not found.")
 
     with col2:
         st.subheader("Residual Plot")
-        if os.path.exists('reports/residual_plot.png'):
-            st.image('reports/residual_plot.png', use_container_width=True)
+        img_path2 = ROOT_DIR / 'reports' / 'residual_plot.png'
+        if img_path2.exists():
+            st.image(str(img_path2), use_container_width=True)
         else:
-            st.warning("Chart not found. Run `src/evaluate_model.py`.")
+            st.warning("Chart not found.")
 
     st.subheader("Feature Importance")
-    if os.path.exists('reports/feature_importance.png'):
-        st.image('reports/feature_importance.png', use_container_width=True)
+    img_path3 = ROOT_DIR / 'reports' / 'feature_importance.png'
+    if img_path3.exists():
+        st.image(str(img_path3), use_container_width=True)
     else:
-        st.warning("Chart not found. Run `src/evaluate_model.py`.")
+        st.warning("Chart not found.")

@@ -59,8 +59,6 @@ Evaluated on an untouched chronological test set (540 samples):
 ## Project Structure
 ```text
 water-consumption-forecasting/
-├── data/
-│   └── processed/ (train.csv, val.csv, test.csv)
 ├── models/
 │   └── decision_tree_model.joblib
 ├── reports/
@@ -82,7 +80,7 @@ water-consumption-forecasting/
 ## Installation & Local Execution
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/water-consumption-forecasting.git
+   git clone https://github.com/Sankeerth1411/water-consumption-forecasting.git
    cd water-consumption-forecasting
    ```
 2. Install dependencies:
@@ -102,7 +100,7 @@ water-consumption-forecasting/
 3. Connect repository, select branch `main`, and set main file path to `app.py`.
 4. Deploy!
 
-- **Live Application URL:** [https://water-consumption-forecasting.streamlit.app](https://water-consumption-forecasting.streamlit.app) *(Placeholder)*
+- **Live Application URL:** [Streamlit Community Cloud Dashboard](https://share.streamlit.io) *(Configure and launch via Streamlit Cloud)*
 
 ---
 
