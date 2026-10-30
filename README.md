@@ -1,3 +1,10 @@
+Update README.md with the actual live Streamlit URL:
+
+https://water-consumption-forecasting-kqpyd7odm2tszptaoaw7t8.streamlit.app/
+
+Add a prominent Live Demo section near the top.
+Commit and push the README update to main.
+Do not modify the working application.
 # Household Water Consumption Forecasting Using Decision Tree Regression
 
 [![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/)
